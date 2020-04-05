@@ -56,8 +56,6 @@ class CategoryTest extends TestCase
         ]);
         $category->refresh();
 
-        dump($category);
-
         $this->assertEquals("Teste", $category->name);
         $this->assertNull($category->description);
         $this->assertTrue($category->is_active);
