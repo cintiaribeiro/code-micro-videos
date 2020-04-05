@@ -39,10 +39,10 @@ class CategoryTest extends TestCase
     {
         $casts = [
             'id' => 'string',
-            'is_active' => 'boolean'
+            'is_active' => 'boolean '
         ];
 
-        $this->assertEquals($casts, $this->category->getCasts());
+       $this->assertEquals($casts, $this->category->getCasts());
     }
 
     public function testeDatesAttribute()
@@ -52,6 +52,7 @@ class CategoryTest extends TestCase
         foreach ($dates as $date) {
             $this->assertContains($date, $this->category->getDates());
         }
+
         $this->assertCount(count($dates), $this->category->getDates());
     }
 
