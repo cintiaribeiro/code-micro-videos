@@ -117,7 +117,7 @@ class GenreControllerTest extends TestCase
         $response = $this->json('DELETE', route('genres.destroy', ['genre' => $genre->id]));
         $response->assertStatus(204);
         $this->assertNull(Genre::find($genre->id));
-        $this->assertNotNull(Genre::withTrashed()->find($genre->id)); //verifica se consegue pegar a genre na lixera (exclusão logica)
+        $this->assertNotNull(Genre::withoutTrashed()->find($genre->id)); //verifica se consegue pegar a genre na lixera (exclusão logica)
     }
 
     private function assertInvalidationRequire(TestResponse $response)
