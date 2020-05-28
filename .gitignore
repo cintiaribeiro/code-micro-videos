@@ -3,7 +3,7 @@
 /public/storage
 /storage/*.key
 /vendor
-/.docker/dbdatas
+/.docker/dbdata
 .env
 .env.testing
 .env.backup

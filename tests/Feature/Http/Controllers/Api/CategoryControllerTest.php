@@ -11,6 +11,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\Traits\TestSaves;
 use Tests\Traits\TestValidation;
 
+
 class CategoryControllerTest extends TestCase
 {
     use DatabaseMigrations, TestValidation, TestSaves;

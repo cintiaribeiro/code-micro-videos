@@ -23,6 +23,6 @@ class CategoryStub extends Model
 
     public static function dropTable()
     {
-        Schema::dropIfExists('category_stubs');
+        \Schema::dropIfExists('category_stubs');
     }
 }
