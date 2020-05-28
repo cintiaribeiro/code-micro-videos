@@ -79,5 +79,40 @@ use Tests\TestCase;
 
          $result = $reflectionMethod->invokeArgs($this->controller, [0]);
      }
+
+     public function testShow()
+     {
+         /** @var CategoryStub $category * */
+         $category = CategoryStub::create(['name' => 'Teste', 'description' => 'test_description']);
+         $result = $this->controller->show($category->id);
+
+         $this->assertEquals($result->toArray(), CategoryStub::find(1)->toArray());
+     }
+
+     public function testUpdate()
+     {
+         /** @var CategoryStub $category * */
+         $category = CategoryStub::create(['name' => 'Teste', 'description' => 'test_description']);
+
+         $request = \Mockery::mock(Request::class);
+         $request->shouldReceive('all')
+             ->once()
+             ->andReturn(['name' => 'Teste Name', 'description' => 'Teste Description']);
+
+         $result = $this->controller->update($request, $category->id);
+         $this->assertEquals($result->toArray(), CategoryStub::find(1)->toArray());
+     }
+
+     public function testDestroy()
+     {
+         /** @var CategoryStub $category * */
+         $category = CategoryStub::create(['name' => 'Teste', 'description' => 'test_description']);
+         $response = $this->controller->destroy($category->id);
+         $this
+             ->createTestResponse($response)
+             ->assertStatus(204);
+
+         $this->assertCount(0, CategoryStub::all());
+     }
 }
 
