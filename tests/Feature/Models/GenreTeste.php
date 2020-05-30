@@ -73,7 +73,17 @@ class GenreTeste extends TestCase
         foreach ($data as $key=>$value) {
             $this->assertEquals($value, $genre->{$key});
         }
+    }
 
+    public function testDelete()
+    {
+        $genre = factory(Genre::class)->create();
+        $genre->delete();
+        $this->assertNull(Genre::find($genre->id));
+
+//        Exclusão lógica
+        $genre->restore();
+        $this->assertNotNull(Genre::find($genre->id));
     }
 
 }
