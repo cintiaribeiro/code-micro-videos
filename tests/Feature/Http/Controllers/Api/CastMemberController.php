@@ -2,43 +2,40 @@
 
 namespace Tests\Feature\Http\Controllers\Api;
 
-use App\Models\Genre;
+use App\Models\CastMember;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\TestResponse;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\Traits\TestSaves;
 use Tests\Traits\TestValidation;
 
-class GenreControllerTest extends TestCase
+class CastMemberController extends TestCase
 {
     use DatabaseMigrations, TestSaves, TestValidation;
 
-    private $genre;
+    private $castMember;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->genre = factory(Genre::class)->create();
+        $this->castMember = factory(CastMember::class)->create();
     }
-
     public function testIndex()
     {
-        $response = $this->get(route('genres.index'));
+        $response = $this->get(route('castMembers.index'));
 
         $response
             ->assertStatus(200)
-            ->assertJson([$this->genre->toArray()]);
+            ->assertJson([$this->castMember->toArray()]);
     }
 
     public function testShow()
     {
-        $response = $this->get(route('genres.show', ['genre' => $this->genre->id]));
-
+        $response = $this->get(route('castMembers.show', ['castMember' => $this->castMember->id]));
         $response
             ->assertStatus(200)
-            ->assertJson($this->genre->toArray());
+            ->assertJson($this->castMember->toArray());
     }
 
     public function testInvalidationData()
@@ -56,37 +53,39 @@ class GenreControllerTest extends TestCase
         $this->assertInvalidationInUpdateAction($data, 'max.string', ['max' => 255]);
 
         $data = [
-            'is_active' => 'A'
+            'type' => 'A'
         ];
-        $this->assertInvalidationInStoreAction($data, 'boolean');
-        $this->assertInvalidationInUpdateAction($data, 'boolean');
+        $this->assertInvalidationInStoreAction($data, 'in');
+        $this->assertInvalidationInUpdateAction($data, 'in');
     }
 
     public function testStore()
     {
         $data = [
-            "name" => "teste"
+            "name" => "teste",
+            "type" => CastMember::TYPE_DIRECTOR
         ];
-        $response = $this->assertStore($data, $data + ['is_active' => true, 'deleted_at' => null ]);
+        $response = $this->assertStore($data, $data + ['deleted_at' => null ]);
         $response->assertJsonStructure([
             'created_at', 'updated_at'
         ]);
 
         $data = [
             'name' => 'Teste',
-            'is_active' => false,
+            'type' => CastMember::TYPE_ACTOR,
         ];
-        $this->assertStore($data, $data + ['is_active' => false, 'deleted_at' => null ]);
+        $this->assertStore($data, $data + ['deleted_at' => null ]);
     }
 
     public function testUpdate()
     {
-        $this->genre = factory(Genre::class)->create([
-            'is_active' => false
+        $this->castMember = factory(CastMember::class)->create([
+            'name' => 'Teste',
+            'type' => CastMember::TYPE_DIRECTOR
         ]);
         $data = [
-            'name' => 'Teste',
-            'is_active' => true
+            'name' => 'Teste update',
+            'type' => CastMember::TYPE_ACTOR
         ];
         $response = $this->assertUpdate($data, $data + ['deleted_at' => null]);
         $response->assertJsonStructure([
@@ -96,25 +95,25 @@ class GenreControllerTest extends TestCase
 
     public function testDelete()
     {
-        $genre = factory(Genre::class)->create();
-        $response = $this->json('DELETE', route('genres.destroy', ['genre' => $genre->id]));
+        $castMember = factory(CastMember::class)->create();
+        $response = $this->json('DELETE', route('castMembers.destroy', ['castMember' => $castMember->id]));
         $response->assertStatus(204);
-        $this->assertNull(Genre::find($genre->id));
-        $this->assertNotNull(Genre::withTrashed()->find($genre->id)); //verifica se consegue pegar a genre na lixera (exclusão logica)
+        $this->assertNull(CastMember::find($castMember->id));
+        $this->assertNotNull(CastMember::withTrashed()->find($castMember->id)); //verifica se consegue pegar a genre na lixera (exclusão logica)
     }
 
     protected function routeStore()
     {
-        return route('genres.store');
+        return route('castMembers.store');
     }
 
     protected function routeUpdate()
     {
-        return route('genres.update', ['genre' => $this->genre->id]);
+        return route('castMembers.update', ['castMember' => $this->castMember->id]);
     }
 
     protected function model()
     {
-        return Genre::class;
+        return CastMember::class;
     }
 }
