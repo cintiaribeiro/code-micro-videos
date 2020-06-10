@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class CastMemberTest extends TestCase
+class CastMemberTestUnit extends TestCase
 {
     private $castMember;
 

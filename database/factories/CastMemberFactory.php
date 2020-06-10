@@ -9,6 +9,6 @@ use Faker\Generator as Faker;
 $factory->define(CastMember::class, function (Faker $faker) {
     return [
         'name' => $faker->colorName,
-        'type' => rand(1, 2)
+        'type' => array_rand([CastMember::TYPE_DIRECTOR, CastMember::TYPE_ACTOR])
     ];
 });
