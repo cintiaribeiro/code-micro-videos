@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Video;
+use App\Rules\hasGenre;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
