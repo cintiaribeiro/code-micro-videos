@@ -23,11 +23,21 @@ class Video extends Model
     protected $dates = ["deleted_at"];
 
     protected $casts = [
-        'uuid' => 'string',
+        'id' => 'string',
         'opened' => 'boolean',
         'year_launched' => 'integer',
         'duration'  => 'integer',
     ];
 
     public $incrementing = false;
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
+
+    public function genres()
+    {
+        return $this->belongsToMany(Genre::class);
+    }
 }

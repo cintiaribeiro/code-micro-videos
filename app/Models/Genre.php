@@ -17,4 +17,14 @@ class Genre extends Model
     ];
 
     public $incrementing = false;
+
+    public function videos()
+    {
+        return $this->belongsToMany(Video::class);
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
 }

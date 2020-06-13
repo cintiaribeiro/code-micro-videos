@@ -43,6 +43,7 @@ abstract class BasicCrudController extends Controller
         $validatedData = $this->validate($request, $this->rolesUpdate());
         $obj = $this->findOrFail($id);
         $obj->update($validatedData);
+        $obj->refresh();
         return $obj;
     }
 

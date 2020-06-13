@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['namespace' => 'Api'], function () {
     Route::resource('categories', 'CategoryController',['except'=> ['create', 'edit']]);
     Route::resource('genres', 'GenreController',['except'=> ['create', 'edit']]);
-    Route::resource('castMembers', 'CastMemberController',['except'=> ['create', 'edit']]); //para melhor codigo, quando trabalhar com nome composto usar _ cast_member
+    Route::resource('cast_members', 'CastMemberController',['except'=> ['create', 'edit']]); //para melhor codigo, quando trabalhar com nome composto usar _ cast_member
     Route::resource('videos', 'VideoController', ['except' => ['create', 'edit']]);
 });
 
