@@ -31,7 +31,7 @@ class hasGenre implements Rule
      *
      * @return string
      */
-    public function message()
+    public function message() 
     {
         return 'The validation error message.';
     }

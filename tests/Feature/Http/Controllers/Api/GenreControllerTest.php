@@ -89,6 +89,14 @@ class GenreControllerTest extends TestCase
         $this->assertInvalidationInStoreAction($data, 'exists');
         $this->assertInvalidationInUpdateAction($data, 'exists');
 
+        $category = factory(Category::class)->create();
+        $category->delete();
+        $data = [
+            "category_id" => [$category->id]
+        ];
+
+        $this->assertInvalidationInStoreAction($data, 'exists');
+        $this->assertInvalidationInUpdateAction($data, 'exists');
     }
 
     public function testSave()
@@ -111,18 +119,27 @@ class GenreControllerTest extends TestCase
         ];
 
         foreach ($data as $key => $value) {
+
+            //store
             $response = $this->assertStore(
                 $value['send_data'], $value['test_data'] + ['deleted_at' => null]
             );
             $response->assertJsonStructure([
                 'created_at', 'updated_at'
             ]);
+            dump($response->json('id'));
+            dump($categoty->id);
+            dd($response);
+            $this->assertHasCategory($response->json('id'), $categoty->id);
+
+            //update
             $response = $this->assertUpdate(
                 $value['send_data'], $value['test_data'] + ['deleted_at' => null]
             );
             $response->assertJsonStructure([
                 'created_at', 'updated_at'
             ]);
+//            $this->assertHasCategory($response->json('id'), $categoty->id);
         }
     }
 
@@ -156,37 +173,38 @@ class GenreControllerTest extends TestCase
         }
     }
 
-    public function testStore()
-    {
-        $data = [
-            "name" => "teste"
-        ];
-        $response = $this->assertStore($data, $data + ['is_active' => true, 'deleted_at' => null ]);
-        $response->assertJsonStructure([
-            'created_at', 'updated_at'
-        ]);
-
-        $data = [
-            'name' => 'Teste',
-            'is_active' => false,
-        ];
-        $this->assertStore($data, $data + ['is_active' => false, 'deleted_at' => null ]);
-    }
-
-    public function testUpdate()
-    {
-        $this->genre = factory(Genre::class)->create([
-            'is_active' => false
-        ]);
-        $data = [
-            'name' => 'Teste',
-            'is_active' => true
-        ];
-        $response = $this->assertUpdate($data, $data + ['deleted_at' => null]);
-        $response->assertJsonStructure([
-            'created_at', 'updated_at'
-        ]);
-    }
+//    public function testStore()
+//    {
+//        $data = [
+//            "name" => "teste"
+//        ];
+//        $response = $this->assertStore($data, $data + ['is_active' => true, 'deleted_at' => null ]);
+//        $response->assertJsonStructure([
+//            'created_at', 'updated_at'
+//        ]);
+//
+//        $data = [
+//            'name' => 'Teste',
+//            'is_active' => false,
+//        ];
+//        $this->assertStore($data, $data + ['is_active' => false, 'deleted_at' => null ]);
+//    }
+//
+//    public function testUpdate()
+//    {
+//        $this->genre = factory(Genre::class)->create([
+//            'is_active' => false
+//        ]);
+//        $data = [
+//            'name' => 'Teste',
+//            'is_active' => true
+//        ];
+//        $response = $this->assertUpdate($data, $data + ['deleted_at' => null]);
+//        $response->assertJsonStructure([
+//            'created_at', 'updated_at'
+//        ]);
+//
+//    }
 
     public function testDelete()
     {
@@ -195,6 +213,14 @@ class GenreControllerTest extends TestCase
         $response->assertStatus(204);
         $this->assertNull(Genre::find($genre->id));
         $this->assertNotNull(Genre::withTrashed()->find($genre->id)); //verifica se consegue pegar a genre na lixera (exclusão logica)
+    }
+
+    protected  function assertHasCategory($genreId, $cateoryId)
+    {
+        $this->assertDatabaseHas('category_genre', [
+            "category_id" => $cateoryId,
+            "genre_id" => $genreId
+        ]);
     }
 
     protected function routeStore()

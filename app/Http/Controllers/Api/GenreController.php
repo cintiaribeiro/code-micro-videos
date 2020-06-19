@@ -11,7 +11,7 @@ class GenreController extends BasicCrudController
     private $rules = [
         "name" => "required|max:255",
         "is_active" => "boolean",
-        "category_id" => "required|array|exists:categories,id",
+        "category_id" => "required|array|exists:categories,id,deleted_at,NULL",
     ];
 
     public function store(Request $request)
