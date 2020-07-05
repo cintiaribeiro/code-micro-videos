@@ -23,7 +23,7 @@ class CastMemberController extends TestCase
     }
     public function testIndex()
     {
-        $response = $this->get(route('castMembers.index'));
+        $response = $this->get(route('cast_members.index'));
 
         $response
             ->assertStatus(200)
@@ -32,7 +32,7 @@ class CastMemberController extends TestCase
 
     public function testShow()
     {
-        $response = $this->get(route('castMembers.show', ['castMember' => $this->castMember->id]));
+        $response = $this->get(route('cast_members.show', ['castMember' => $this->castMember->id]));
         $response
             ->assertStatus(200)
             ->assertJson($this->castMember->toArray());
@@ -96,7 +96,7 @@ class CastMemberController extends TestCase
     public function testDelete()
     {
         $castMember = factory(CastMember::class)->create();
-        $response = $this->json('DELETE', route('castMembers.destroy', ['castMember' => $castMember->id]));
+        $response = $this->json('DELETE', route('cast_members.destroy', ['castMember' => $castMember->id]));
         $response->assertStatus(204);
         $this->assertNull(CastMember::find($castMember->id));
         $this->assertNotNull(CastMember::withTrashed()->find($castMember->id)); //verifica se consegue pegar a genre na lixera (exclusão logica)
@@ -104,12 +104,12 @@ class CastMemberController extends TestCase
 
     protected function routeStore()
     {
-        return route('castMembers.store');
+        return route('cast_members.store');
     }
 
     protected function routeUpdate()
     {
-        return route('castMembers.update', ['castMember' => $this->castMember->id]);
+        return route('cast_members.update', ['castMember' => $this->castMember->id]);
     }
 
     protected function model()

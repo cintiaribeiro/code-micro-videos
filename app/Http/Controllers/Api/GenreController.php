@@ -16,6 +16,7 @@ class GenreController extends BasicCrudController
 
     public function store(Request $request)
     {
+
         $self = $this;
         $validatedData = $this->validate($request, $this->rolesStore());
 
@@ -46,7 +47,7 @@ class GenreController extends BasicCrudController
 
     protected function handleRelations($genre, Request $request)
     {
-        $genre->categories()->sync($request->get('categories_id'));
+        $genre->categories()->sync($request->get('category_id'));
     }
 
     protected function model()
