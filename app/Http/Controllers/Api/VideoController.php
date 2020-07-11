@@ -26,7 +26,8 @@ class VideoController extends BasicCrudController
                 'required',
                 'array',
                 'exists:genres,id,deleted_at,NULL'
-            ]
+            ],
+            'video_file' => 'mimetypes:video/mp4|max:50' //kb
         ];
     }
 
@@ -35,12 +36,7 @@ class VideoController extends BasicCrudController
         $this->addRuleIfGenreHasCategories($request);
         $validatedData = $this->validate($request, $this->rolesStore());
         $self = $this;
-        /** @var Video $obj **/
-       $obj = \DB::transaction(function () use($request, $validatedData, $self) {
-            $obj = $this->model()::create($validatedData);
-            $self->handleRelations($obj, $request);
-            return $obj;
-       });
+        $obj = $this->model()::create($validatedData);
         $obj->refresh();
         return $obj;
     }
@@ -51,12 +47,7 @@ class VideoController extends BasicCrudController
         $this->addRuleIfGenreHasCategories($request);
         $validatedData = $this->validate($request, $this->rolesUpdate());
         $self = $this;
-        $obj = \DB::transaction(function () use($request, $validatedData, $id, $self) {
-            $obj = $this->findOrFail($id);
-            $obj->update($validatedData);
-            $self->handleRelations($obj, $request);
-            return $obj;
-        });
+        $obj->update($validatedData);
         $obj->refresh();
         return $obj;
     }
@@ -70,11 +61,7 @@ class VideoController extends BasicCrudController
         );
     }
 
-    protected function handleRelations($video, Request $request)
-    {
-        $video->categories()->sync($request->get('category_id'));
-        $video->genres()->sync($request->get('genre_id'));
-    }
+
 
     protected function model()
     {
