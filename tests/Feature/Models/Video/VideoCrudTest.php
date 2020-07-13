@@ -10,6 +10,16 @@ use Illuminate\Database\QueryException;
 
 class VideoCrudTest extends BaseVideoTestCase
 {
+    private $fileFieldsData = [];
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        foreach (Video::$fieldFiles as $field) {
+            $this->fileFieldsData[$field] = "$field.test";
+        }
+    }
+
     public function testList()
     {
         factory(Video::class)->create();
@@ -70,6 +80,16 @@ class VideoCrudTest extends BaseVideoTestCase
 
     public function testUpdateWithBasicFields()
     {
+        $video = Video::create($this->data +  $this->fileFieldsData);
+        $video->refresh();
+
+        $this->assertEquals(36, strlen(($video->id)));
+        $this->assertFalse($video->opened);
+        $this->assertDatabaseHas(
+            'videos',
+            $this->data + ['opened' => false]
+        );
+
         $video = factory(Video::class)->create(
             ['opened' => false]
         );
@@ -100,7 +120,7 @@ class VideoCrudTest extends BaseVideoTestCase
 
     public function testCreateWithBasicFields()
     {
-        $video  = Video::create($this->data);
+        $video  = Video::create($this->data +  $this->fileFieldsData);
         $video->refresh();
 
         $this->assertEquals(36, strlen($video->id));

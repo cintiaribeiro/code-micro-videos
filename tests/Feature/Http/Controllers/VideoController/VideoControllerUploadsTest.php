@@ -24,6 +24,8 @@ class VideoControllerUploadsTest extends BaseVideoControllerTestCase
 
     public function testStoreWithFiles()
     {
+        UploadedFile::fake()->create("image.jpg");
+
         \Storage::fake();
         $files = $this->getFiles();
 
