@@ -18,7 +18,7 @@ use Tests\Traits\TestValidation;
 
 class VideoControllerTest extends TestCase
 {
-    use DatabaseMigrations, TestSaves, TestValidation, TestUploads;
+   // use DatabaseMigrations, TestSaves, TestValidation, TestUploads;
 
     private $video;
     private $sendData;

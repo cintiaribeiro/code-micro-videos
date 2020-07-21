@@ -4,6 +4,7 @@ namespace Tests\Stubs\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CategoryStub extends Model
 {
@@ -12,7 +13,7 @@ class CategoryStub extends Model
 
     public static function createTable()
     {
-        \Schema::create('category_stubs', function (Blueprint $table) {
+        Schema::create('category_stubs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->text('description')->nullable();
@@ -23,6 +24,6 @@ class CategoryStub extends Model
 
     public static function dropTable()
     {
-        \Schema::dropIfExists('category_stubs');
+        Schema::dropIfExists('category_stubs');
     }
 }
