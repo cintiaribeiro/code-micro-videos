@@ -3,7 +3,7 @@
   <component name="PhpDockerContainerSettings">
     <list>
       <map>
-        <entry key="1cd68c94-fc1a-4312-a577-54eca5209b36">
+        <entry key="067f518b-8d32-4e23-8de7-19ef50ba3bd0">
           <value>
             <DockerContainerSettings>
               <option name="version" value="1" />
@@ -18,37 +18,7 @@
             </DockerContainerSettings>
           </value>
         </entry>
-        <entry key="2fc54638-7372-4fd6-ba36-126980e6f114">
-          <value>
-            <DockerContainerSettings>
-              <option name="version" value="1" />
-              <option name="volumeBindings">
-                <list>
-                  <DockerVolumeBindingImpl>
-                    <option name="containerPath" value="/opt/project" />
-                    <option name="hostPath" value="$PROJECT_DIR$" />
-                  </DockerVolumeBindingImpl>
-                </list>
-              </option>
-            </DockerContainerSettings>
-          </value>
-        </entry>
-        <entry key="474a9512-5cdc-4c5c-b90c-b315e0eb4e07">
-          <value>
-            <DockerContainerSettings>
-              <option name="version" value="1" />
-              <option name="volumeBindings">
-                <list>
-                  <DockerVolumeBindingImpl>
-                    <option name="containerPath" value="/opt/project" />
-                    <option name="hostPath" value="$PROJECT_DIR$" />
-                  </DockerVolumeBindingImpl>
-                </list>
-              </option>
-            </DockerContainerSettings>
-          </value>
-        </entry>
-        <entry key="4f7a0c25-ee4e-44d4-b8c1-2db246f80d0c">
+        <entry key="1a3a7851-589f-4691-ab7c-d680558b08c4">
           <value>
             <DockerContainerSettings>
               <option name="links">
@@ -72,7 +42,7 @@
             </DockerContainerSettings>
           </value>
         </entry>
-        <entry key="566ac508-40e0-4e03-bd50-bd5303b5a119">
+        <entry key="2ea5ae96-25f3-4770-a4fc-ec3342b8bb9a">
           <value>
             <DockerContainerSettings>
               <option name="version" value="1" />
@@ -87,7 +57,7 @@
             </DockerContainerSettings>
           </value>
         </entry>
-        <entry key="74e651f4-202c-48f9-a7a1-e16f211bcc1f">
+        <entry key="518dbbdd-f492-4e59-bbb3-a2f79d1fdaa3">
           <value>
             <DockerContainerSettings>
               <option name="version" value="1" />
@@ -102,7 +72,7 @@
             </DockerContainerSettings>
           </value>
         </entry>
-        <entry key="8e68347b-082e-43b3-8d6e-0bbbaaf70e98">
+        <entry key="82a6f6d7-d61d-4f43-b9a0-128fa1df81e2">
           <value>
             <DockerContainerSettings>
               <option name="version" value="1" />
@@ -117,37 +87,7 @@
             </DockerContainerSettings>
           </value>
         </entry>
-        <entry key="df9899cd-6707-4d52-974c-040f3c0ced49">
-          <value>
-            <DockerContainerSettings>
-              <option name="version" value="1" />
-              <option name="volumeBindings">
-                <list>
-                  <DockerVolumeBindingImpl>
-                    <option name="containerPath" value="/opt/project" />
-                    <option name="hostPath" value="$PROJECT_DIR$" />
-                  </DockerVolumeBindingImpl>
-                </list>
-              </option>
-            </DockerContainerSettings>
-          </value>
-        </entry>
-        <entry key="f647f1b4-83dd-4fc7-a983-c4d96483b322">
-          <value>
-            <DockerContainerSettings>
-              <option name="version" value="1" />
-              <option name="volumeBindings">
-                <list>
-                  <DockerVolumeBindingImpl>
-                    <option name="containerPath" value="/opt/project" />
-                    <option name="hostPath" value="$PROJECT_DIR$" />
-                  </DockerVolumeBindingImpl>
-                </list>
-              </option>
-            </DockerContainerSettings>
-          </value>
-        </entry>
-        <entry key="f8b3a045-01cb-4004-8452-84eac0fb0d2f">
+        <entry key="dad5ff19-0725-4764-8096-c8714b0515e1">
           <value>
             <DockerContainerSettings>
               <option name="version" value="1" />

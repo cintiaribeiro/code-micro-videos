@@ -20,37 +20,23 @@ class VideoControllerTest extends TestCase
 {
    // use DatabaseMigrations, TestSaves, TestValidation, TestUploads;
 
-    private $video;
-    private $sendData;
+//    private $video;
+//    private $sendData;
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-        $this->video = factory(Video::class)->create([
-            'opened' => false
-        ]);
-        $this->sendData = [
-            'title' => 'Titulo',
-            'description' => "Descrição",
-            'year_launched' => 2010,
-            'rating' => Video::RATING_LIST[0],
-            'duration' => 90,
-        ];
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//    protected function setUp(): void
+//    {
+//        parent::setUp();
+//        $this->video = factory(Video::class)->create([
+//            'opened' => false
+//        ]);
+//        $this->sendData = [
+//            'title' => 'Titulo',
+//            'description' => "Descrição",
+//            'year_launched' => 2010,
+//            'rating' => Video::RATING_LIST[0],
+//            'duration' => 90,
+//        ];
+//    }
 
 //    public function testRollbackStore()
 //    {
