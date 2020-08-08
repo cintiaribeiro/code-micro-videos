@@ -3,7 +3,7 @@ steps:
   - name: 'gcr.io/cloud-builders/gcloud'
     args:
       - kms
-      - descrypt
+      - decrypt
       - --ciphertext-file=./storage/credentials/google/code-micro-videos.json.enc
       - --plaintext-file=./storage/credentials/google/code-micro-videos.json
       - --location=global
