@@ -8,7 +8,7 @@ steps:
       - --plaintext-file=./storage/credentials/google/code-micro-videos.json
       - --location=global
       - --keyring=testing
-      - --key=service-account
+      - --key=service-accont
 
   - id: "Rodando docker-compose"
     name: "gcr.io/$PROJECT_ID/docker-compose:1.24.0"
