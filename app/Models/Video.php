@@ -11,6 +11,11 @@ class Video extends Model
 
     const RATING_LIST = ['L', '10', '12', '14', '16', '18'];
 
+    const THUMB_FILE_MAX_SIZE = 1024 * 5; //5MB
+    const BANNER_FILE_MAX_SIZE = 1024 * 10; //10MB
+    const TRAILER_FILE_MAX_SIZE = 1024 * 1024 * 1; //1GB
+    const VIDEO_FILE_MAX_SIZE = 1024 * 1024 * 5; //50GB
+
     protected $fillable = [
         'title',
         'description',
@@ -19,7 +24,9 @@ class Video extends Model
         'rating',
         'duration',
         'video_file',
-        'thumb_file'
+        'thumb_file',
+        'banner_file',
+        'trailer_file'
     ];
 
     protected $dates = ["deleted_at"];
@@ -33,7 +40,7 @@ class Video extends Model
 
     public $incrementing = false;
 
-    public static $fieldFiles = ['video_file', 'thumb_file'];
+    public static $fieldFiles = ['video_file', 'thumb_file', 'banner_file', 'trailer_file'];
 
     public static function create(array $attributes = [])
     {
