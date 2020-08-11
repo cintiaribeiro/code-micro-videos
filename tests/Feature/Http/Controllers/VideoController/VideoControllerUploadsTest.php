@@ -22,15 +22,15 @@ class VideoControllerUploadsTest extends BaseVideoControllerTestCase
             'mimetypes', ['values' => 'video/mp4']);
     }
 
-    public function testInvalidationThumberFile()
-    {
-        $this->assertInvalidationFile(
-            'thumb_file',
-            'jpg',
-            video::THUMB_FILE_MAX_SIZE,
-            'image'
-        );
-    }
+    // public function testInvalidationThumberFile()
+    // {
+    //     $this->assertInvalidationFile(
+    //         'thumb_file',
+    //         'jpg',
+    //         video::THUMB_FILE_MAX_SIZE,
+    //         'image'
+    //     );
+    // }
 
     public function testInvalidationBannerFile()
     {
