@@ -32,15 +32,15 @@ class VideoControllerUploadsTest extends BaseVideoControllerTestCase
     //     );
     // }
 
-    public function testInvalidationBannerFile()
-    {
-        $this->assertInvalidationFile(
-            'banner_file',
-            'jpg',
-            video::BANNER_FILE_MAX_SIZE,
-            'image'
-        );
-    }
+    // public function testInvalidationBannerFile()
+    // {
+    //     $this->assertInvalidationFile(
+    //         'banner_file',
+    //         'jpg',
+    //         video::BANNER_FILE_MAX_SIZE,
+    //         'image'
+    //     );
+    // }
 
     public function testInvalidationTrailerFile()
     {
