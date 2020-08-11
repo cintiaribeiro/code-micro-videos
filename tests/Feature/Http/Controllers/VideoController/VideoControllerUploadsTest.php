@@ -13,14 +13,14 @@ class VideoControllerUploadsTest extends BaseVideoControllerTestCase
 {
     use TestValidation, TestUploads;
 
-    public function testInvalidationVideoField()
-    {
-        $this->assertInvalidationFile (
-            'video_file',
-            'mp4',
-            video::VIDEO_FILE_MAX_SIZE,
-            'mimetypes', ['values' => 'video/mp4']);
-    }
+    // public function testInvalidationVideoField()
+    // {
+    //     $this->assertInvalidationFile (
+    //         'video_file',
+    //         'mp4',
+    //         video::VIDEO_FILE_MAX_SIZE,
+    //         'mimetypes', ['values' => 'video/mp4']);
+    // }
 
     // public function testInvalidationThumberFile()
     // {
