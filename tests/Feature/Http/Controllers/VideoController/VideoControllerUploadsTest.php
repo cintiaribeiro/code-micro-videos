@@ -22,35 +22,35 @@ class VideoControllerUploadsTest extends BaseVideoControllerTestCase
             'mimetypes', ['values' => 'video/mp4']);
     }
 
-    public function testInvalidationThumberFile()
-    {
-        $this->assertInvalidationFile(
-            'thumb_file',
-            'jpg',
-            video::THUMB_FILE_MAX_SIZE,
-            'image'
-        );
-    }
+    // public function testInvalidationThumberFile()
+    // {
+    //     $this->assertInvalidationFile(
+    //         'thumb_file',
+    //         'jpg',
+    //         video::THUMB_FILE_MAX_SIZE,
+    //         'image'
+    //     );
+    // }
 
-    public function testInvalidationBannerFile()
-    {
-        $this->assertInvalidationFile(
-            'banner_file',
-            'jpg',
-            video::BANNER_FILE_MAX_SIZE,
-            'image'
-        );
-    }
+    // public function testInvalidationBannerFile()
+    // {
+    //     $this->assertInvalidationFile(
+    //         'banner_file',
+    //         'jpg',
+    //         video::BANNER_FILE_MAX_SIZE,
+    //         'image'
+    //     );
+    // }
 
-    public function testInvalidationTrailerFile()
-    {
-        $this->assertInvalidationFile(
-            'trailer_file',
-            'mp4',
-            video::TRAILER_FILE_MAX_SIZE,
-            'mimetypes', ['values' => 'video/mp4']
-        );
-    }
+    // public function testInvalidationTrailerFile()
+    // {
+    //     $this->assertInvalidationFile(
+    //         'trailer_file',
+    //         'mp4',
+    //         video::TRAILER_FILE_MAX_SIZE,
+    //         'mimetypes', ['values' => 'video/mp4']
+    //     );
+    // }
 
     public function testStoreWithFiles()
     {
