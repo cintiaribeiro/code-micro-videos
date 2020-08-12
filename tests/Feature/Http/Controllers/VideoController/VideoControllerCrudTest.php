@@ -9,6 +9,7 @@ use App\Models\Genre;
 use App\Models\Video;
 use Tests\Traits\TestSaves;
 use Tests\Traits\TestValidation;
+use Illuminate\Support\Arr;
 
 class VideoControllerCrudTest extends BaseVideoControllerTestCase
 {
@@ -136,32 +137,24 @@ class VideoControllerCrudTest extends BaseVideoControllerTestCase
 
     public function testSave()
     {
-        $categoty = factory(Category::class)->create();
-        $genre = factory(Genre::class)->create();
-        $genre->categories()->sync($categoty->id);
+        // $categoty = factory(Category::class)->create();
+        // $genre = factory(Genre::class)->create();
+        // $genre->categories()->sync($categoty->id);
+
+        $testData = Arr::except($this->sendData, ['category_id', 'genre_id']);
+
         $data = [
             [
-                'send_data' => $this->sendData + [
-                        'category_id' => [$categoty->id],
-                        'genre_id' => [$genre->id],
-                    ],
-                'test_data' => $this->sendData + ['opened' => false],
+                'send_data' => $this->sendData,
+                'test_data' => $testData + ['opened' => false],
             ],
             [
-                'send_data' => $this->sendData + [
-                        'opened' => true,
-                        'category_id' => [$categoty->id],
-                        'genre_id' => [$genre->id],
-                    ],
-                'test_data' => $this->sendData + ['opened' => true],
+                'send_data' => $this->sendData,                        
+                'test_data' => $testData + ['opened' => true],
             ],
             [
-                'send_data' => $this->sendData + [
-                        'rating' => Video::RATING_LIST[1],
-                        'category_id' => [$categoty->id],
-                        'genre_id' => [$genre->id],
-                    ],
-                'test_data' => $this->sendData + ['rating' => Video::RATING_LIST[1]],
+                'send_data' => $this->sendData,
+                'test_data' => $testData + ['rating' => Video::RATING_LIST[1]],
             ],
         ];
 

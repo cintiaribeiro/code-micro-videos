@@ -21,12 +21,18 @@ abstract class BaseVideoControllerTestCase extends TestCase
             'opened' => false
         ]);
 
+        $category = factory(Category::class)->create();
+        $genre = factory(Genre::class)->create();
+        $genre->category()->sync($category);
+
         $this->sendData = [
             'title' => 'Title',
             'description' => 'description',
             'year_launched' => 2010,
             'rating' => Video::RATING_LIST[0],
-            'duration' => 90
+            'duration' => 90,
+            'category_id' => [$category->id],
+            'genre_id' => [$genre->id]
         ];
     }
 }
