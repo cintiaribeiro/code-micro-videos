@@ -25,7 +25,7 @@ abstract class BaseVideoControllerTestCase extends TestCase
 
         $category = factory(Category::class)->create();
         $genre = factory(Genre::class)->create();
-        $genre->category()->sync($category);
+        $genre->categories()->sync($category);
 
         $this->sendData = [
             'title' => 'Title',

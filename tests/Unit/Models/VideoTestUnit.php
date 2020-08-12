@@ -25,7 +25,11 @@ class VideoTestUnit extends TestCase
             'year_launched',
             'opened',
             'rating',
-            'duration'
+            'duration',
+            'video_file',
+            'thumb_file',
+            'banner_file',
+            'trailer_file'
         ];
         $this->assertEquals($fillable, $this->video->getFillable());
     }
@@ -34,7 +38,8 @@ class VideoTestUnit extends TestCase
     {
         $trait = [
             SoftDeletes::class,
-            \App\Models\Traits\Uuid::class
+            \App\Models\Traits\Uuid::class,
+            \App\Models\Traits\UploadFiles::class
         ];
 
         $genreTraits = array_keys(class_uses(Video::class));
