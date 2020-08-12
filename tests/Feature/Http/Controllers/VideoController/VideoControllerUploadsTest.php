@@ -109,7 +109,7 @@ class VideoControllerUploadsTest extends BaseVideoControllerTestCase
         );
 
         $response->assertStatus(200);
-        $this->assertFilesOnPersist($response, Arr::except($files, ['thumb_file', 'vide_file']) + newFiles);
+        $this->assertFilesOnPersist($response, Arr::except($files, ['thumb_file', 'vide_file']) + $newFiles);
 
         $id = $response->json('id');
         $video = Video::find($id);

@@ -95,7 +95,7 @@ class VideoUploadTest extends BaseVideoTestCase
     public function testFileUrlsWithLocalDriver()
     {
         $fileFields = [];
-        foreach (Video::$fileFields as $field) {
+        foreach (Video::$fieldFiles as $field) {
             $fileFields[$field] = "$field.test";            
         }
         $video = factory(Video::class)->create($fileFields);
@@ -110,7 +110,7 @@ class VideoUploadTest extends BaseVideoTestCase
     public function testFileUrlsWithGcpDriver()
     {
         $fileFields = [];
-        foreach (Video::$fileFields as $field) {
+        foreach (Video::$fieldFiles as $field) {
             $fileFields[$field] = "$field.test";            
         }
         $video = factory(Video::class)->create($fileFields);
