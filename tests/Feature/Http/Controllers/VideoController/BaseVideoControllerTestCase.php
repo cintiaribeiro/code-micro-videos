@@ -33,6 +33,7 @@ abstract class BaseVideoControllerTestCase extends TestCase
             'year_launched' => 2010,
             'rating' => Video::RATING_LIST[0],
             'duration' => 90,
+            'opened' => false,
             'category_id' => [$category->id],
             'genre_id' => [$genre->id]
         ];
