@@ -39,12 +39,17 @@ trait TestSaves
     {
         $model = $this->model();
         $table = (new $model)->getTable();
-        $this->assertDatabaseHas($table, $testDatabase + ['id' => $response->json('id')]);
+        $this->assertDatabaseHas($table, $testDatabase + ['id' => $this->getIdFromResponse($response)]);
     }
 
     private function assertJsonResponseContent(TestResponse $response, array $testJsonData, array $testDatabase = null)
     {
         $testeResponse = $testJsonData ?? $testDatabase;
-        $response->assertJsonFragment($testeResponse + ['id' => $response->json('id')]);
+        $response->assertJsonFragment($testeResponse + ['id' => $this->getIdFromResponse($response)]);
+    }
+
+    private function getIdFromResponse(TestResponse $response)
+    {
+        return $response->json('id') ?? $response->json('data.id');
     }
 }

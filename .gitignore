@@ -4,6 +4,8 @@
 /storage/*.key
 /vendor
 /.docker/dbdata
+/.vscode
+/.devcontainer
 .env
 .env.testing
 .env.backup
