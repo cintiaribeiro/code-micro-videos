@@ -21,7 +21,11 @@ abstract class BaseVideoControllerTestCase extends TestCase
         parent::setUp();
 
         $this->video = factory(Video::class)->create([
-            'opened' => false
+            'opened' => false,
+            'thumb_file' => 'thumb.jpg',
+            'banner_file' => 'banner.jpg',
+            'video_file' => 'video.mp4',
+            'trailer_file' => 'trailer.mp4',
         ]);
 
         $category = factory(Category::class)->create();
@@ -29,14 +33,14 @@ abstract class BaseVideoControllerTestCase extends TestCase
         $genre->categories()->sync($category);
 
         $this->sendData = [
-            'title' => 'Title',
-            'description' => 'description',
-            'year_launched' => 2010,
-            'rating' => Video::RATING_LIST[0],
-            'duration' => 90,
-            'opened' => false,
-            'category_id' => [$category->id],
-            'genre_id' => [$genre->id]
+            "title" => 'Title',
+            "description" => 'description',
+            "year_launched" => 2010,
+            "rating" => Video::RATING_LIST[0],
+            "duration" => 90,
+            "opened" => false,
+            "category_id" => [$category->id],
+            "genre_id" => [$genre->id]
         ];
     }
 

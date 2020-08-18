@@ -43,8 +43,7 @@ class VideoControllerCrudTest extends BaseVideoControllerTestCase
         "genres" => [
             "*" => [
                 "id",
-                "name",
-                "description",
+                "name",               
                 "is_active",
                 "deleted_at",
                 "created_at",
@@ -56,6 +55,7 @@ class VideoControllerCrudTest extends BaseVideoControllerTestCase
     public function testIndex()
     {
         $response = $this->get(route('videos.index'));
+
         $response
             ->assertStatus(200)
             ->assertJson([
@@ -212,33 +212,18 @@ class VideoControllerCrudTest extends BaseVideoControllerTestCase
             $response = $this->assertStore(
                 $value['send_data'], $value['test_data'] + ['deleted_at' => null]
             );
+        
             $response->assertJsonStructure([
                 "data" => $this->serializeFields
             ]);
-            // $this->assertHasCategory(
-            //     $response->json('id'),
-            //     $value['send_data']['category_id'][0]
+            
+            // $response = $this->assertUpdate(
+            //     $value['send_data'], $value['test_data'] + ['deleted_at' => null]
             // );
+            // $response->assertJsonStructure([
+            //     "data" => $this->serializeFields
+            // ]);
 
-            // $this->assertHasGenre(
-            //     $response->json('id'),
-            //     $value['send_data']['genre_id'][0]
-            // );
-            $response = $this->assertUpdate(
-                $value['send_data'], $value['test_data'] + ['deleted_at' => null]
-            );
-            $response->assertJsonStructure([
-                "data" => $this->serializeFields
-            ]);
-            // $this->assertHasCategory(
-            //     $response->json('id'),
-            //     $value['send_data']['category_id'][0]
-            // );
-
-            // $this->assertHasGenre(
-            //     $response->json('id'),
-            //     $value['send_data']['genre_id'][0]
-            // );
             $this->assertResource($response, new VideoResource(Video::find($response->json('data.id'))));
         }
     }
