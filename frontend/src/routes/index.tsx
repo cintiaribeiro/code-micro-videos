@@ -1,7 +1,7 @@
 import { RouteProps } from 'react-router-dom';
 import Dashboard from '../pages/Dashboard';
 import CategoryList from '../pages/category/PageList';
-import MemberList from '../pages/member/PageList';
+import MemberList from '../pages/cast-member/PageList';
 import GenreList from '../pages/genres/PageList';
 
 export interface MyRouteProps extends RouteProps{
@@ -31,16 +31,30 @@ const routes: MyRouteProps[] = [
         exact: true
     },
     {
-        name: "members.list",
-        label: "Listar membros",
-        path: "/cast_members",
+        name: "cast_members.list",
+        label: "Listar membros de elenco",
+        path: "/cast-members",
         component: MemberList,
         exact: true
+    },
+    {
+        name: "cast_members.create",
+        label: "Criar membros",
+        path: "/cast-members/create",
+        component: MemberList,
+        exact: true 
     },
     {
         name: "genres.list",
         label: "Listar generos",
         path: "/genres",
+        component: GenreList,
+        exact: true
+    },
+    {
+        name: "genres.create",
+        label: "Criar generos",
+        path: "/genres/create",
         component: GenreList,
         exact: true
     },

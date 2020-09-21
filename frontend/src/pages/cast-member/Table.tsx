@@ -5,6 +5,11 @@ import MUIDataTable, { MUIDataTableColumn } from 'mui-datatables';
 import format from "date-fns/format";
 import parseISO from 'date-fns/parseISO';
 
+const CastMemberTypeMap = {
+    1: "Diretor",
+    2: "Ator"
+}
+
 const columsDefinition: MUIDataTableColumn[] = [
     {
         name: "name",
@@ -15,7 +20,7 @@ const columsDefinition: MUIDataTableColumn[] = [
         label: "Tipo",
         options: {
             customBodyRender(value, tableMeta, updateValue){
-                return <span>{member(value)}</span>
+                return CastMemberTypeMap[value];
             }
         }
     },

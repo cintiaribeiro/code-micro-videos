@@ -14,15 +14,8 @@ const columsDefinition: MUIDataTableColumn[] = [
         name: "categories",
         label: "Categorias",
         options:{
-            customBodyRender(value, tableMeta, updateValue){
-                //console.log(value)
-                const itens = value.map((item:any)=> {
-                    let categorias:string = '';
-                    return categorias += item.name +', ';
-                    
-                })
-                // console.log(itens.substr(0, itens.length -2));
-                return itens;
+            customBodyRender: (value, tableMeta, updateValue) => {
+                return value.map((value:any) => value.name).join(', ');
             }
         }
     },
