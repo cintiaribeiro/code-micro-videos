@@ -9,10 +9,10 @@ cd /var/www/frontend && npm install && cd ..
 
 ### BACK-END
 cd backend 
-if [ ! -f ".env.testing"]; then
+if [ ! -f ".env.testing" ]; then
     cp .env.testing.exemple .env.testing
 fi
-if [ ! -f ".env"]; then
+if [ ! -f ".env" ]; then
     cp .env.example .env
 fi
 composer install
