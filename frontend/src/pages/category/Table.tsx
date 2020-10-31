@@ -4,6 +4,7 @@ import React , {useState, useEffect}from 'react';
 import { httpVideo } from '../../util/http';
 import format from "date-fns/format";
 import parseISO from 'date-fns/parseISO';
+import categoryhttp from '../../util/http/category-http';
 
 const columsDefinition: MUIDataTableColumn[] = [
     {
@@ -36,18 +37,24 @@ const data = [
     { name: "Teste3", is_active: true, created_at: "2020-09-10"},
     { name: "Teste4", is_active: false, created_at: "2020-09-10"},
 ]
-
+interface Category {
+    id: string;
+    name: string;
+}
 type Props = {
 
 };
 const Table = (props: Props) => {
 
-    const [data, setData ] = useState([]);
+    const [data, setData ] = useState<Category[]>([]);
     
     useEffect(()=>{
-        httpVideo.get('categories').then(
-            response =>  setData(response.data.data)
-        )
+        categoryhttp
+        .list<{data: Category[]}>()
+        .then(({data}) => setData(data.data));
+        // httpVideo.get('categories').then(
+        //     response =>  setData(response.data.data)
+        // )
     }, []);
 
     return (
