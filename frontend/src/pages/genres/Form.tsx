@@ -29,14 +29,13 @@ export const Form = () => {
     
     const {register, handleSubmit, getValues, setValue, watch} = useForm({
         defaultValues: {
-            categories_id: []
+            category_id: [] as any,
+            is_active: true
         }
     });
 
-    const category = getValues()['categories_id'];
-
     useEffect(() => {
-        register({name: "categories_id"})
+        register({name: "category_id"})
     }, [register]);
 
     useEffect(() => {
@@ -46,13 +45,12 @@ export const Form = () => {
     }, []);
 
     function onSubmit(formData, event) {
+        console.log(formData);
         genrehttp
             .create(formData)
             .then((response) => console.log(response));
     }
-
-    console.log(category);
-    
+     
     return(
         <form onSubmit={handleSubmit(onSubmit)}>
             <TextField
@@ -65,21 +63,23 @@ export const Form = () => {
             />
             <TextField
                 select
-                name="categories_id"
-                value={watch('categories_id')}
+                name="category_id"
+                value={watch('category_id')}
                 label="Categorias"
                 margin={'normal'}
                 variant={'outlined'}
                 fullWidth
-                onChange={(e) => {
-                    setValue('categories_id', e.target.value);
+                onChange={(e)=>{
+                    setValue('category_id', e.target.value)
                 }}
+           
                 SelectProps={{
                     multiple: true 
                 }}
             >
-                <MenuItem value="">
+                <MenuItem value="" disabled>
                     <em>Selecione Categorias</em>
+                </MenuItem>
                     {
                         categories.map(
                             (category, key) => (
@@ -87,7 +87,7 @@ export const Form = () => {
                             )
                         )
                     }
-                </MenuItem>
+               
             </TextField>
 
             <Box dir="rtl">
