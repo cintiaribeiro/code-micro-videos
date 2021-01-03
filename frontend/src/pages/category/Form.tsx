@@ -5,42 +5,42 @@ import categoryhttp from '../../util/http/category-http';
 
 const useStyles = makeStyles((theme:Theme)=>{
     return {
-        _submit: {
+        submit: {
             margin: theme.spacing(1)
-        },
-        get submit() {
-            return this._submit;
-        },
-        set submit(value) {
-            this._submit = value;
-        },
+        },        
     }
 });
 
 export const Form = () => {
+
     const classes = useStyles();
+
     const buttonProps: ButtonProps = {
         className: classes.submit,
         variant: "outlined",        
     };
 
-    const {register, handleSubmit} = useForm()
-    function onSubmit(formData) {
+    const {register, handleSubmit, getValues} = useForm({
+        defaultValues: {
+            is_active: true
+        }
+    });
+
+    function onSubmit(formData, event) {
         categoryhttp
             .create(formData)
             .then((response) => console.log(response));
     }
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <TextField
-                inputRef={register}
+            <TextField                
                 name="name"
                 label="Nome"
                 fullWidth
                 variant={"outlined"}
-            />
-            <TextField
                 inputRef={register}
+            />
+            <TextField                
                 name="description"
                 label="Descrição"
                 multiline
@@ -48,14 +48,17 @@ export const Form = () => {
                 fullWidth
                 variant={"outlined"}
                 margin={"normal"}
-            />
-            <Checkbox
                 inputRef={register}
-                name="is_active"                
+            />
+            <Checkbox               
+                name="is_active"
+                inputRef={register} 
+                defaultChecked   
+
             />
             Ativo?
             <Box dir={"rtl"}>
-                <Button {...buttonProps} >Salvar</Button>
+                <Button {...buttonProps} onClick={() => onSubmit(getValues(), null)}>Salvar</Button>
                 <Button {...buttonProps} type="submit">Salvar e continuar editando</Button>
                 
             </Box>

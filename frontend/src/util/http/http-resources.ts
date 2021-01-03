@@ -1,5 +1,11 @@
 import { AxiosInstance, AxiosResponse } from 'axios'
+
 export default class HttpResource{
+    /**
+     * 
+     * @param http 
+     * @param resource 
+     */
     constructor(protected http: AxiosInstance, protected resource) {
     } 
     list<T = any >(): Promise<AxiosResponse<T>>{

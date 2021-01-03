@@ -3,7 +3,9 @@ import Dashboard from '../pages/Dashboard';
 import CategoryList from '../pages/category/PageList';
 import CategoryCreate from '../pages/category/PageForm';
 import MemberList from '../pages/cast-member/PageList';
+import MemberCreate from '../pages/cast-member/PageForm';
 import GenreList from '../pages/genres/PageList';
+import GereCreate from '../pages/genres/PageForm';
 
 export interface MyRouteProps extends RouteProps{
     name:string;
@@ -42,7 +44,7 @@ const routes: MyRouteProps[] = [
         name: "cast_members.create",
         label: "Criar membros",
         path: "/cast-members/create",
-        component: MemberList,
+        component: MemberCreate,
         exact: true 
     },
     {
@@ -56,7 +58,7 @@ const routes: MyRouteProps[] = [
         name: "genres.create",
         label: "Criar generos",
         path: "/genres/create",
-        component: GenreList,
+        component: GereCreate,
         exact: true
     },
 ];
