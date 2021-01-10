@@ -5,7 +5,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import castmemberhttp from '../../util/http/cast-member-http';
+import categoryhttp from '../../util/http/category-http';
 import genrehttp from '../../util/http/genre-http';
 
 const useStyles = makeStyles((theme:Theme)=>{
@@ -39,7 +39,7 @@ export const Form = () => {
     }, [register]);
 
     useEffect(() => {
-        castmemberhttp
+        categoryhttp
         .list()
         .then(({data}) => setCategories(data.data))
     }, []);
